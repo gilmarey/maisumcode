@@ -36,7 +36,7 @@ function App() {
           <div>
             <img className='imagemLogo' src={logo} />
           </div>
-          <div className='container__participantes'>
+          <div className='participantes'>
             {
               participantes.map((participante) => {
                 return (
