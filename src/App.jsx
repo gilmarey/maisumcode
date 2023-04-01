@@ -1,55 +1,69 @@
 import logo from './assets/Mais1CodeLogo.svg'
-import "./styles.css"
+import logoBlackAndWhite from './assets/Mais1CodeBlackWhiteLogo.svg'
+import { useState } from 'react'
+import './styles.scss'
 
 function App() {
-  const participantes = [
+  const [avatarHover, setAvatarHover] = useState('')
+
+  const participants = [
     {
       id: 1,
-      nome: "Eu",
-      imagem: "https://github.com/DeOliveiraDev.png",
+      name: 'Vinícius',
+      avatar: 'https://github.com/DeOliveiraDev.png',
     },
     {
       id: 2,
-      nome: "Eu de novo",
-      imagem: "https://github.com/DeOliveiraDev.png",
+      name: 'Vinícius',
+      avatar: 'https://github.com/DeOliveiraDev.png',
     },
     {
       id: 3,
-      nome: "Olha eu ai",
-      imagem: "https://github.com/DeOliveiraDev.png",
+      name: 'Allan',
+      avatar: 'https://github.com/DeOliveiraDev.png',
     },
     {
       id: 4,
-      nome: "Caraca, só dá eu",
-      imagem: "https://github.com/DeOliveiraDev.png",
+      name: 'Matheus',
+      avatar: 'https://github.com/DeOliveiraDev.png',
     },
-  ];
+  ]
 
   return (
-    <div className="App">
+    <div>
       <header>
-        <div>
-          <img src={logo} />
-          <h1>BIG MAIS1CODE BRASIL</h1>
+        <div className="headerTopContainer">
+          <img className="headerTopContainer__logo" src={logoBlackAndWhite} />
+          <h1 className="headerTopContainer__title">BIG MAIS1CODE BRASIL</h1>
         </div>
-        <div className='container'>
-          <div>
-            <img className='imagemLogo' src={logo} />
-          </div>
-          <div className='participantes'>
-            {
-              participantes.map((participante) => {
-                return (
-                  <img key={participante.id} className="imagemParticipante" src={participante.imagem} />
-                )
-              })
-            }
+        <div className="headerBottomContainer">
+          {avatarHover ? (
+            <p className="headerBottomContainer--name">{avatarHover}</p>
+          ) : (
+            <div>
+              <img src={logo} />
+            </div>
+          )}
+          <div className="headerBottomContainer__participants">
+            {participants.map((participant) => {
+              return (
+                <img
+                  key={participant.id}
+                  onMouseEnter={() =>
+                    setAvatarHover(participant.name.toUpperCase())
+                    
+                  }
+                  onMouseLeave={() => setAvatarHover('')}
+                  className="headerBottomContainer__participants--avatar"
+                  src={participant.avatar}
+                />
+              )
+            })}
           </div>
         </div>
-        
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
