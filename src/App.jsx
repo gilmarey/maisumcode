@@ -29,6 +29,15 @@ function App() {
     },
   ]
 
+  function aumentar(e) {
+    e.currentTarget.style.transform = "scale(1.1)";
+    e.currentTarget.style.zIndex = "2";
+  }
+  function diminuir(e) {
+    e.currentTarget.style.transform = "scale(1)";
+    e.currentTarget.style.zIndex = "1";
+  }
+
   return (
     <div>
       <header>
@@ -51,7 +60,6 @@ function App() {
                   key={participant.id}
                   onMouseEnter={() =>
                     setAvatarHover(participant.name.toUpperCase())
-                    
                   }
                   onMouseLeave={() => setAvatarHover('')}
                   className="headerBottomContainer__participants--avatar"
